@@ -1,4 +1,6 @@
-﻿namespace Tetris
+﻿using System.Security.Cryptography.X509Certificates;
+
+namespace Tetris
 {
     // class holds two dimentional rectangular array
     public class GameGrid
@@ -68,5 +70,52 @@
             }
             return true;
         }
+
+        // method for clear row
+
+        private void ClearRow(int r)
+        {
+            for(int c = 0; c< Columns; c++)
+            {
+                grid[r, c] = 0;
+            }
+        }
+
+        //one that moves a row down by a certain no. of rows
+        private void MoveRowDown(int r, int numRows)
+        {
+            for (int c = 0; c < Columns; c++)
+            {
+                grid[r + numRows, c] = grid[r, c];
+                grid[r, c] = 0;
+            } 
+        } 
+            
+        // implement a clear full row method
+         public int ClearFullRows()
+         { 
+            int cleared = 0;
+
+            for(int r = Rows -1;r >= 0; r--)
+            {
+                //if the current row is full and if it is we clear it and increment cleared
+
+                if (IsRowFull(r) )
+                { 
+                    ClearRow(r);
+                    cleared++;
+                }
+                //otherwise if cleared is greater than zero, then we move the current row down by the number of cleared rows
+                else if(cleared > 0)
+                {
+                    MoveRowDown(r, cleared);
+                }
+                // in the end we return the number of cleared rows
+            }
+            return cleared;
+
+            
+         }
+
     }
 }
