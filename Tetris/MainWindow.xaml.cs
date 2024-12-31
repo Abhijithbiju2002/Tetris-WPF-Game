@@ -47,6 +47,7 @@ namespace Tetris
         public MainWindow()
         {
             InitializeComponent();
+            imageControls = SetupGameCanvas(gameState.GameGrid);
         }
 
         private Image[,] SetupGameCanvas(GameGrid grid)
@@ -63,8 +64,14 @@ namespace Tetris
                         Width = cellSize,
                         Height = cellSize,
                     };
+
+                    Canvas.SetTop(imageControl,(r - 2) * cellSize);
+                    Canvas.SetLeft(imageControl, c *  cellSize);
+                    GameCanvas.Children.Add(imageControl);
+                    imageControls[r, c] = imageControl;
                 }
             }
+            return imageControls;
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
