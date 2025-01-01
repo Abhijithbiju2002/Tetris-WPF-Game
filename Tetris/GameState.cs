@@ -51,7 +51,7 @@
 
         // we write a method to rotate the current block clockwise but only if its possible to do so
         //from where it is..
-        public void RotateBlock()
+        public void RotateBlockCW()
         {
             CurrentBlock.RotateCW();
 
