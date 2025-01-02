@@ -63,7 +63,7 @@ namespace Tetris
 
                     Canvas.SetTop(imageControl, (r - 2) * cellSize);
                     Canvas.SetLeft(imageControl, c * cellSize);
-
+                    GameCanvas.Children.Add(imageControl);
                     imageControls[r, c] = imageControl;
                 }
             }
@@ -84,7 +84,7 @@ namespace Tetris
 
         private void DrawBlock(Block block)
         {
-            foreach (Position p in block.TilePosition())
+            foreach (Position p in block.TilePositions())
             {
                 imageControls[p.Row, p.Column].Source = tileImages[block.Id];
             }
@@ -151,6 +151,7 @@ namespace Tetris
         {
             gameState = new GameState();
             GameOverMenu.Visibility= Visibility.Hidden;
+            await GameLoop();
 
         }
     }
