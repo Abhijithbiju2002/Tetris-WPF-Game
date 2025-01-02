@@ -32,6 +32,8 @@
         public BlockQueue BlockQueue { get; }
         public bool GameOver { get; private set; }
         public int Score { get; private set; }
+        public Block HeldBlock { get; private set; }
+        public bool CanHold { get; private set; }
 
         //in the constructor we initialize the game grid with 22 rows and 10 columns
         //we also initialize the block queue and use it to get a random block for the current block property
@@ -41,6 +43,7 @@
             GameGrid = new GameGrid(22, 10);
             BlockQueue = new BlockQueue();
             currentBlock = BlockQueue.GetAndUpdate();
+            CanHold = true;
         }
         //checks the method  if the current block is in a legal position or not
 
@@ -61,6 +64,27 @@
 
         // we write a method to rotate the current block clockwise but only if its possible to do so
         //from where it is..
+        public void HoldBlock()
+        {
+            if (!CanHold)
+            {
+                return;
+            }
+
+            if (HeldBlock == null)
+            {
+                HeldBlock = CurrentBlock;
+                CurrentBlock = BlockQueue.GetAndUpdate();
+            }
+            else
+            {
+                Block tmp = CurrentBlock;
+                CurrentBlock = HeldBlock;
+                HeldBlock = tmp;
+            }
+
+            CanHold = false;
+        }
         public void RotateBlockCW()
         {
             CurrentBlock.RotateCW();
@@ -129,6 +153,7 @@
             else
             {
                 currentBlock = BlockQueue.GetAndUpdate();
+                CanHold = true
             }
         }
         //move down method
