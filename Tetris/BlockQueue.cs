@@ -1,4 +1,6 @@
-﻿namespace Tetris
+﻿using System;
+
+namespace Tetris
 {
     //it contain a block array with an instance of the 7 block classes which we will recycle
     public class BlockQueue
