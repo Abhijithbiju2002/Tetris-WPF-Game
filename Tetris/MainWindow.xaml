@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tetris"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="800"
+        Title="Tetris" Height="600" Width="800"
         MinWidth="600" MinHeight="600"
         Foreground="White"
         FontFamily="Segoe UI Light" FontSize="28"
@@ -34,6 +34,7 @@
                     Background="#101010"
                     Width="250"
                     Height="500"/>
+                    
 
         </Viewbox>
 
@@ -50,6 +51,7 @@
                     HorizontalAlignment="Right">
           <TextBlock Text="Hold"   
                         TextAlignment="Center"/>
+            
           <Image x:Name="HoldImage"
                     Margin="20"
                     Width="125"/>
@@ -76,6 +78,10 @@
                         VerticalAlignment="Center">
                 <TextBlock Text="Game Over"
                            FontSize="48"
+                           TextAlignment="Center"/>
+                <TextBlock x:Name="FinalScoreText"
+                           Text="Score: "
+                           FontSize="36"
                            TextAlignment="Center"/>
                 <Button Content="Play Again"
                         Background="LightGreen"
