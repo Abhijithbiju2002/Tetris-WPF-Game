@@ -1,13 +1,8 @@
-﻿using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Tetris
 {
@@ -16,7 +11,7 @@ namespace Tetris
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly ImageSource[] tileImages = new ImageSource[] 
+        private readonly ImageSource[] tileImages = new ImageSource[]
         {
             new BitmapImage(new Uri("Assets/TileEmpty.png", UriKind.Relative)),
             new BitmapImage(new Uri("Assets/TileCyan.png", UriKind.Relative)),
@@ -46,7 +41,7 @@ namespace Tetris
 
         public MainWindow()
         {
-            InitializeComponent();
+
             imageControls = SetupGameCanvas(gameState.GameGrid);
         }
 
@@ -55,9 +50,9 @@ namespace Tetris
             Image[,] imageControls = new Image[grid.Rows, grid.Columns];
             int cellSize = 25;
 
-            for( int r = 0; r < grid.Columns; r++ )
+            for (int r = 0; r < grid.Columns; r++)
             {
-                for(int c = 0; c < grid.Columns; c++ )
+                for (int c = 0; c < grid.Columns; c++)
                 {
                     Image imageControl = new Image
                     {
@@ -65,9 +60,9 @@ namespace Tetris
                         Height = cellSize,
                     };
 
-                    Canvas.SetTop(imageControl,(r - 2) * cellSize);
-                    Canvas.SetLeft(imageControl, c *  cellSize);
-                    GameCanvas.Children.Add(imageControl);
+                    Canvas.SetTop(imageControl, (r - 2) * cellSize);
+                    Canvas.SetLeft(imageControl, c * cellSize);
+
                     imageControls[r, c] = imageControl;
                 }
             }
@@ -76,12 +71,12 @@ namespace Tetris
 
         private void DrawGrid(GameGrid grid)
         {
-            for (int r = 0;r < grid.Rows; r++ )
+            for (int r = 0; r < grid.Rows; r++)
             {
-                for(int c =0; c < grid.Columns;c++)
+                for (int c = 0; c < grid.Columns; c++)
                 {
-                    int id = grid[r,c];
-                    imageControls[r,c].Source= tileImages[id];
+                    int id = grid[r, c];
+                    imageControls[r, c].Source = tileImages[id];
                 }
             }
         }
@@ -93,7 +88,7 @@ namespace Tetris
                 imageControls[p.Row, p.Column].Source = tileImages[block.Id];
             }
         }
-        private void Draw( GameState gameState)
+        private void Draw(GameState gameState)
         {
             DrawGrid(gameState.GameGrid);
             DrawBlock(gameState.CurrentBlock);
@@ -123,7 +118,7 @@ namespace Tetris
                 case Key.Left:
                     gameState.MoveBlockLeft();
                     break;
-                case Key.Right: 
+                case Key.Right:
                     gameState.MoveBlockRight();
                     break;
                 case Key.Down:
@@ -140,11 +135,13 @@ namespace Tetris
 
             }
 
+            Draw(gameState);
+
         }
 
         private async void GameCanvas_Loaded(object sender, RoutedEventArgs e)
         {
-            await
+            await GameLoop();
         }
 
         private void PlayAgain_Click(object sender, RoutedEventArgs e)

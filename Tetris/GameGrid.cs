@@ -1,6 +1,4 @@
-﻿using System.Security.Cryptography.X509Certificates;
-
-namespace Tetris
+﻿namespace Tetris
 {
     // class holds two dimentional rectangular array
     public class GameGrid
@@ -12,7 +10,7 @@ namespace Tetris
         public int Columns { get; }
 
         //define indexer to provide easy access to the array
-        public int this[int r, int c] 
+        public int this[int r, int c]
         {
             get => grid[r, c];
             set => grid[r, c] = value;
@@ -41,8 +39,8 @@ namespace Tetris
         // checks the given cell is empty or not
         public bool IsEmpty(int r, int c)
         {
-            return IsInside(r,c) && grid[r,c] == 0;//it must be inside the grid and the value at the entry
-                                                    //in the array must be zero
+            return IsInside(r, c) && grid[r, c] == 0;//it must be inside the grid and the value at the entry
+                                                     //in the array must be zero
         }
 
         //checks the entire row is full
@@ -61,9 +59,9 @@ namespace Tetris
         //checks row is empty
         public bool IsRowEmpty(int r)
         {
-            for(int c = 0;c < Columns; c++)
+            for (int c = 0; c < Columns; c++)
             {
-                if(grid[r, c] != 0)
+                if (grid[r, c] != 0)
                 {
                     return false;
                 }
@@ -75,7 +73,7 @@ namespace Tetris
 
         private void ClearRow(int r)
         {
-            for(int c = 0; c< Columns; c++)
+            for (int c = 0; c < Columns; c++)
             {
                 grid[r, c] = 0;
             }
@@ -88,25 +86,25 @@ namespace Tetris
             {
                 grid[r + numRows, c] = grid[r, c];
                 grid[r, c] = 0;
-            } 
-        } 
-            
+            }
+        }
+
         // implement a clear full row method
-         public int ClearFullRows()
-         { 
+        public int ClearFullRows()
+        {
             int cleared = 0;
 
-            for(int r = Rows -1;r >= 0; r--)
+            for (int r = Rows - 1; r >= 0; r--)
             {
                 //if the current row is full and if it is we clear it and increment cleared
 
-                if (IsRowFull(r) )
-                { 
+                if (IsRowFull(r))
+                {
                     ClearRow(r);
                     cleared++;
                 }
                 //otherwise if cleared is greater than zero, then we move the current row down by the number of cleared rows
-                else if(cleared > 0)
+                else if (cleared > 0)
                 {
                     MoveRowDown(r, cleared);
                 }
@@ -114,8 +112,8 @@ namespace Tetris
             }
             return cleared;
 
-            
-         }
+
+        }
 
     }
 }

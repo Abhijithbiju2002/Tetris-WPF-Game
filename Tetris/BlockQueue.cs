@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Tetris
+﻿namespace Tetris
 {
     //it contain a block array with an instance of the 7 block classes which we will recycle
     public class BlockQueue
@@ -20,7 +18,7 @@ namespace Tetris
         private readonly Random random = new Random();
 
         //finally a property for the next block in the queue
-        public Block NextBlock {  get; private set; }
+        public Block NextBlock { get; private set; }
 
         //in the constructor we initialize the next block with a random block
         public BlockQueue()
@@ -46,9 +44,9 @@ namespace Tetris
             {
                 NextBlock = RandomBlock();
             }
-            while(block.Id == NextBlock.Id);
+            while (block.Id == NextBlock.Id);
 
-            return block;   
+            return block;
         }
     }
 }

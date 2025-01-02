@@ -1,6 +1,6 @@
 ﻿namespace Tetris
 {
-   
+
     public class GameState
     {
         // adding a property with a backing field for the current block
@@ -36,9 +36,9 @@
 
         private bool BlockFits()
         {
-            foreach(Position p in CurrentBlock.TilePosition())
+            foreach (Position p in CurrentBlock.TilePosition())
             {
-                if(!GameGrid.IsEmpty(p.Row, p.Column))
+                if (!GameGrid.IsEmpty(p.Row, p.Column))
                 {
                     return false;
                 }
@@ -55,7 +55,7 @@
         {
             CurrentBlock.RotateCW();
 
-            if(!BlockFits())
+            if (!BlockFits())
             {
                 CurrentBlock.RotateCCW();
             }
@@ -66,10 +66,10 @@
         public void RotateBlockCCW()
         {
             CurrentBlock.RotateCCW();
-            if(!BlockFits())
+            if (!BlockFits())
             {
                 CurrentBlock.RotateCW();
-            }            
+            }
         }
         // need method for moving the current block left and right our strategy will be the same as above
         //if it moves to an illegal position we move it back
@@ -110,7 +110,7 @@
             GameGrid.ClearFullRows();
 
             //if it is.. we set our gameover property to true
-            if (IsGameOver() )
+            if (IsGameOver())
             {
                 GameOver = true;
             }

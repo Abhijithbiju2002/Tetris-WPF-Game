@@ -4,7 +4,7 @@
     //this class will stare a row and column
     public class Position
     {
-        public int Row {  get; set; }
+        public int Row { get; set; }
         public int Column { get; set; }
 
         //simple constructor

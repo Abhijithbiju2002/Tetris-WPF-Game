@@ -1,8 +1,6 @@
-﻿using System.Configuration;
-using System.Data;
-using System.Windows;
+﻿using System.Windows;
 
-namespace Tetris
+namespace Tetris_3
 {
     /// <summary>
     /// Interaction logic for App.xaml

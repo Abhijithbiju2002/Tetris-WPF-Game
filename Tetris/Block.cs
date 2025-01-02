@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics.Metrics;
-
-namespace Tetris
+﻿namespace Tetris
 {
     // this is an abstract class then we will write an subclass for esch  specific block
     public abstract class Block
@@ -11,7 +8,7 @@ namespace Tetris
         //a start offset which decides where the block spawns in the grid
         protected abstract Position StartOffset { get; }
         //an integer id whch we need to distinguish the blocks
-        public abstract int Id {  get; }
+        public abstract int Id { get; }
         //we store the current rotation state and the current offset
         private int rotationState;
         private Position offset;
@@ -19,12 +16,12 @@ namespace Tetris
         //in constructor we set the offset equal to start offset
         public Block()
         {
-            offset = new Position(StartOffset.Row,StartOffset.Column);
+            offset = new Position(StartOffset.Row, StartOffset.Column);
         }
         //grid positions occupied by the block factoring in the current rotation and offset
         public IEnumerable<Position> TilePosition()
         {
-            foreach(Position p in Tiles[rotationState])
+            foreach (Position p in Tiles[rotationState])
             {
                 yield return new Position(p.Row + offset.Row, p.Column + offset.Column);
             }
@@ -38,13 +35,13 @@ namespace Tetris
         // counter clockwise
         public void RotateCCW()
         {
-            if(rotationState == 0)
+            if (rotationState == 0)
             {
                 rotationState = Tiles.Length - 1;
             }
             else
             {
-                rotationState--;    
+                rotationState--;
             }
         }
         //move method which moves the block by a given number of rows and columns
