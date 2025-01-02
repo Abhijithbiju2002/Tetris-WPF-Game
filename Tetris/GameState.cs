@@ -45,7 +45,7 @@
 
         private bool BlockFits()
         {
-            foreach (Position p in CurrentBlock.TilePosition())
+            foreach (Position p in CurrentBlock.TilePositions())
             {
                 if (!GameGrid.IsEmpty(p.Row, p.Column))
                 {
@@ -75,6 +75,7 @@
         public void RotateBlockCCW()
         {
             CurrentBlock.RotateCCW();
+
             if (!BlockFits())
             {
                 CurrentBlock.RotateCW();
@@ -95,6 +96,7 @@
         public void MoveBlockRight()
         {
             CurrentBlock.Move(0, 1);
+
             if (!BlockFits())
             {
                 CurrentBlock.Move(0, -1);
@@ -111,7 +113,7 @@
         //positions in the game grid equal to the blocks id
         private void PlaceBlock()
         {
-            foreach (Position p in CurrentBlock.TilePosition())
+            foreach (Position p in CurrentBlock.TilePositions())
             {
                 GameGrid[p.Row, p.Column] = CurrentBlock.Id;
             }
