@@ -31,6 +31,7 @@
         public GameGrid GameGrid { get; }
         public BlockQueue BlockQueue { get; }
         public bool GameOver { get; private set; }
+        public int Score { get; private set; }
 
         //in the constructor we initialize the game grid with 22 rows and 10 columns
         //we also initialize the block queue and use it to get a random block for the current block property
@@ -118,7 +119,7 @@
                 GameGrid[p.Row, p.Column] = CurrentBlock.Id;
             }
             //we clear any potentially full rows and check if the game is over
-            GameGrid.ClearFullRows();
+            Score += GameGrid.ClearFullRows();
 
             //if it is.. we set our gameover property to true
             if (IsGameOver())
