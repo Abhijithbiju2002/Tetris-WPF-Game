@@ -1,4 +1,6 @@
-﻿namespace Tetris
+﻿using System.Collections.Generic;
+
+namespace Tetris
 {
     // this is an abstract class then we will write an subclass for esch  specific block
     public abstract class Block
@@ -19,7 +21,7 @@
             offset = new Position(StartOffset.Row, StartOffset.Column);
         }
         //grid positions occupied by the block factoring in the current rotation and offset
-        public IEnumerable<Position> TilePosition()
+        public IEnumerable<Position> TilePositions()
         {
             foreach (Position p in Tiles[rotationState])
             {
