@@ -153,7 +153,7 @@
             else
             {
                 currentBlock = BlockQueue.GetAndUpdate();
-                CanHold = true
+                CanHold = true;
             }
         }
         //move down method
