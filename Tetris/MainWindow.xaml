@@ -33,7 +33,9 @@
             <Canvas x:Name="GameCanvas"
                     Background="#101010"
                     Width="250"
-                    Height="500"/>
+                    Height="500"
+                    ClipToBounds="True"
+                    Loaded="GameCanvas_Loaded"/>
                     
 
         </Viewbox>
@@ -79,10 +81,12 @@
                 <TextBlock Text="Game Over"
                            FontSize="48"
                            TextAlignment="Center"/>
+                
                 <TextBlock x:Name="FinalScoreText"
                            Text="Score: "
                            FontSize="36"
                            TextAlignment="Center"/>
+                
                 <Button Content="Play Again"
                         Background="LightGreen"
                         Margin="0,20,0,0"
