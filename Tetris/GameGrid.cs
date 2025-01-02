@@ -22,7 +22,7 @@
         {
             Rows = rows;
             Columns = columns;
-            grid = new int[Rows, Columns];
+            grid = new int[rows, columns];
             //expl:in the body we save the number of rows and columns and intialize the array
         }
 

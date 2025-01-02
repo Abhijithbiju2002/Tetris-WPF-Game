@@ -41,6 +41,7 @@ namespace Tetris
 
         public MainWindow()
         {
+            InitializeComponent();
 
             imageControls = SetupGameCanvas(gameState.GameGrid);
         }

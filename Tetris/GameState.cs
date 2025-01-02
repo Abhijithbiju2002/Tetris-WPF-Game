@@ -14,6 +14,15 @@
                 currentBlock = value;
                 currentBlock.Reset();
                 // when we update the current vlock the reset method is called to set  the correct start position and rotation
+                for (int i = 0; i < 2; i++)
+                {
+                    currentBlock.Move(1, 0);
+
+                    if (!BlockFits())
+                    {
+                        currentBlock.Move(-1, 0);
+                    }
+                }
 
             }
         }
