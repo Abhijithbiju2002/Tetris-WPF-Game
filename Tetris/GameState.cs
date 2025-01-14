@@ -1,6 +1,7 @@
-﻿namespace Tetris
-{
+﻿using Tetris;
 
+namespace Tetris_2._0
+{
     public class GameState
     {
         // adding a property with a backing field for the current block
@@ -32,7 +33,7 @@
         public BlockQueue BlockQueue { get; }
         public bool GameOver { get; private set; }
         public int Score { get; private set; }
-        public Block HeldBlock { get; private set; }
+        public Block? HeldBlock { get; private set; }
         public bool CanHold { get; private set; }
 
         //in the constructor we initialize the game grid with 22 rows and 10 columns
@@ -44,6 +45,7 @@
             BlockQueue = new BlockQueue();
             currentBlock = BlockQueue.GetAndUpdate();
             CanHold = true;
+            HeldBlock = null;
         }
         //checks the method  if the current block is in a legal position or not
 

@@ -3,8 +3,9 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using Tetris;
 
-namespace Tetris
+namespace Tetris_2._0
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -54,9 +55,9 @@ namespace Tetris
             Image[,] imageControls = new Image[grid.Rows, grid.Columns];
             int cellSize = 25;
 
-            for (int r = 0; r < grid.Columns; r++)
+            for (int r = 0; r < grid.Rows; r++) // Corrected to `grid.Rows`
             {
-                for (int c = 0; c < grid.Columns; c++)
+                for (int c = 0; c < grid.Columns; c++) // Corrected to `grid.Columns`
                 {
                     Image imageControl = new Image
                     {
@@ -73,34 +74,73 @@ namespace Tetris
             return imageControls;
         }
 
+
         private void DrawGrid(GameGrid grid)
         {
+            if (grid == null) return; // Safeguard: Ensure grid is not null
+
             for (int r = 0; r < grid.Rows; r++)
             {
                 for (int c = 0; c < grid.Columns; c++)
                 {
+                    // Safeguard: Ensure position is within bounds of imageControls
+                    if (r < 0 || r >= imageControls.GetLength(0) ||
+                        c < 0 || c >= imageControls.GetLength(1))
+                    {
+                        continue;
+                    }
+
                     int id = grid[r, c];
-                    imageControls[r, c].Opacity = 1;
-                    imageControls[r, c].Source = tileImages[id];
+
+                    // Safeguard: Ensure id is within bounds of tileImages array
+                    if (id < 0 || id >= tileImages.Length)
+                    {
+                        imageControls[r, c].Opacity = 0; // Default to invisible if id is invalid
+                        imageControls[r, c].Source = null;
+                        continue;
+                    }
+
+                    // Safeguard: Ensure imageControls element is initialized
+                    if (imageControls[r, c] != null)
+                    {
+                        imageControls[r, c].Opacity = 1;
+                        imageControls[r, c].Source = tileImages[id];
+                    }
                 }
             }
         }
 
+
         private void DrawBlock(Block block)
         {
+            if (block == null) return; // Safeguard: If block is null, exit method
+
             foreach (Position p in block.TilePositions())
             {
-                imageControls[p.Row, p.Column].Opacity = 1;
-                imageControls[p.Row, p.Column].Source = tileImages[block.Id];
+                // Safeguard: Ensure the position is within bounds
+                if (p.Row < 0 || p.Row >= imageControls.GetLength(0) ||
+                    p.Column < 0 || p.Column >= imageControls.GetLength(1))
+                {
+                    continue;
+                }
+
+                if (imageControls[p.Row, p.Column] != null) // Check if control is initialized
+                {
+                    imageControls[p.Row, p.Column].Opacity = 1;
+                    imageControls[p.Row, p.Column].Source = tileImages[block.Id];
+                }
             }
         }
+
 
         private void DrawNextBlock(BlockQueue blockQueue)
         {
             Block next = blockQueue.NextBlock;
             NextImage.Source = blockImages[next.Id];
         }
-        private void DrawHeldBlock(Block heldBlock)
+        private void DrawHeldBlock(Block? heldBlock)
+
+
         {
             if (heldBlock == null)
             {
@@ -113,14 +153,36 @@ namespace Tetris
         }
         private void DrawGhostBlock(Block block)
         {
+            if (block == null) return; // Safeguard: Ensure block is not null
+
             int dropDistance = gameState.BlockDropDistance();
 
             foreach (Position p in block.TilePositions())
             {
-                imageControls[p.Row + dropDistance, p.Column].Opacity = 0.25;
-                imageControls[p.Row + dropDistance, p.Column].Source = tileImages[block.Id];
+                int row = p.Row + dropDistance;
+                int column = p.Column;
+
+                // Safeguard: Ensure position is within bounds
+                if (row < 0 || row >= imageControls.GetLength(0) ||
+                    column < 0 || column >= imageControls.GetLength(1))
+                {
+                    continue;
+                }
+
+                // Safeguard: Ensure imageControls element is initialized
+                if (imageControls[row, column] != null)
+                {
+                    imageControls[row, column].Opacity = 0.25;
+
+                    // Safeguard: Ensure block.Id is within bounds of tileImages
+                    if (block.Id >= 0 && block.Id < tileImages.Length)
+                    {
+                        imageControls[row, column].Source = tileImages[block.Id];
+                    }
+                }
             }
         }
+
         private void Draw(GameState gameState)
         {
             DrawGrid(gameState.GameGrid);
