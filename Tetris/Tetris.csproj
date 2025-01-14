@@ -2,10 +2,37 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net8.0-windows</TargetFramework>
+    <TargetFramework>net8.0-windows8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
+    <BaseOutputPath>E:\C#\New folder</BaseOutputPath>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\bg2.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\Background.png" />
+    <Resource Include="Assets\bg2.png" />
+    <Resource Include="Assets\Block-Empty.png" />
+    <Resource Include="Assets\Block-I.png" />
+    <Resource Include="Assets\Block-J.png" />
+    <Resource Include="Assets\Block-L.png" />
+    <Resource Include="Assets\Block-O.png" />
+    <Resource Include="Assets\Block-S.png" />
+    <Resource Include="Assets\Block-T.png" />
+    <Resource Include="Assets\Block-Z.png" />
+    <Resource Include="Assets\Icon.ico" />
+    <Resource Include="Assets\TileBlue.png" />
+    <Resource Include="Assets\TileCyan.png" />
+    <Resource Include="Assets\TileEmpty.png" />
+    <Resource Include="Assets\TileGreen.png" />
+    <Resource Include="Assets\TileOrange.png" />
+    <Resource Include="Assets\TilePurple.png" />
+    <Resource Include="Assets\TileRed.png" />
+    <Resource Include="Assets\TileYellow.png" />
+  </ItemGroup>
 
 </Project>
