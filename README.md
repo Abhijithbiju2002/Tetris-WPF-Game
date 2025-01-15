@@ -1,4 +1,4 @@
-                                                                                               Tetris Game (WPF Application)
+Tetris Game (WPF Application)
 
 A modern take on the classic Tetris game, built using C# and Windows Presentation Foundation (WPF). This project showcases key features such as a "hold" functionality for swapping blocks, a next-piece preview, and responsive gameplay mechanics.
 
