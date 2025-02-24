@@ -24,12 +24,13 @@ Up Arrow (↑) → Rotate piece
 Down Arrow (↓) → Soft drop
 Spacebar → Hard drop
 C Key → Hold piece (swap with reserved block)
+
 🚀 How to Run the Game
-Clone the Repository
+Clone the Repository 
 bash
 Copy
 Edit
-git clone 
+git clone: https://github.com/Abhijithbiju2002/Tetris-WPF-Game.git
 Open in Visual Studio
 Open the TetrisGame.sln file in Visual Studio
 Run the Application
